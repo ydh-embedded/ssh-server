@@ -1,48 +1,249 @@
-# ssh-server
-
-#azure 
-#bastion
-#Port 
+#ssh
+#server
 ______________
 
-# Azure
-## Azure Bastion Subnet /27
+# SSH-Server
 
-[https://k21academy.com/microsoft-azure/azure-bastion-host-service/](https://k21academy.com/microsoft-azure/azure-bastion-host-service/ "https://k21academy.com/microsoft-azure/azure-bastion-host-service/")
-
-![Bild]( C:\working-directory\Azure\screen\Azure-dbAzure-Bastion-Subnet27.png)
-
-
-![Bild]( C:\working-directory\Azure\screen\Azure-dbTDEsynchronerKeyPass.png)
-
-### Masterdaten bank konfigurieren
 
 ```bash
-	sp_set_firewall_rule     #Rolle erstellen
-	sp_delete_firewall_rule   #Rolle löschen
+	servermkfs.ext4 "/dev/disk/by-id/scsi-0Linode_Volume_VOL_11GB_"  
 ```
 .
 
 
-### Private Link
 
-- verschiedene Dienste werden über das Backbone von Microsoft bereitgestellt
-- Punkt zu Punkt direkt auf die Datenbank zuzugreifen mit VPN über öffentliche Adresse oder
-- PtP ExpressRoute (erstellt eine private Netzwerk-Adresse Zugriffszeit 5ms)
+```bash
+	mkdir "/mnt/VOL_11GB_"  
+```
+.
+
+ 
+```bash
+	mount "/dev/disk/by-id/scsi-0Linode_Volume_VOL_11GB_" "/mnt/VOL_11GB_"  
+```
+. 
+
+  
+```bash
+	ssh [root@172.105.72.234](mailto:root@172.105.72.234)  
+```
+.
+
+  
+```bash
+	apt install unattended-upgrades automatische Updates
+```
+.
+
+  
+```bash
+	dpkg-reconfigure --priority=low unattended-upgrades automatische Updates Part 2
+```
+.
+
+  
+```bash
+	adduser <Benutzer> <Benutzer>
+	#Benutzername in neuen Benutzer wechseln
+		
+	#Passwort and enter
+```
+.
+
+
+```bash
+	usermod -aG sudo Benutzername Benutzer zum Superhelden Gruppe hinzufügen
+```
+.
+
+  
+```bash
+	#Benutzer ausloggen und neu einloggen
+```
+.
+
+  
+```bash
+	logout
+	ssh cloud@1xx.1xx.1xx.1xx
+```
+.
+
+_____________
+### Authentification Key-Pair
+
+
+```bash
+	mkdir [F12]/.ssh Ordner für public Key erstellen
+```
+.  
+
+
+```bash
+	mkdir [F12]/.ssh && chmod 700 [F12]/.ssh Ordner für public Key erstellen mitadmin rechten  
+
+```
+.
+
+
+```bash
+	ssh-keygen -b 4096 public key erzeugen
+
+```
+.
+
+
+```bash
+	ssh-copy-id cloud@@1xx.1xx.1xx.1xx #puplic-key hochladen
+```
+.
+
+
+```bash
+	sudo nano /etc/ssh/sshd_config #Standard Port ändern ;)
+```
+.
+
+
+```bash
+	Port 22 in 2xx
+```
+.
+
+
+```bash
+	AddressFamily any in AddressFamily inet
+```
+.
+
+
+```bash
+	Permit root Login Yes in no
+```
+.
+
+
+```bash
+	PasswordAuthentification Yes in no
+```
+.
+
+
+```bash
+	sudo ss -tupln offene Ports anzeigen lassen
+```
+.
+
+
+```bash
+	sudo systemctl restart sshd
+```
+.
+
+________________
+### Firewall installieren
+
 - 
 
-
-### Verschlüsselung auf Objekt Ebene
-
-- Always Encrypted
-
-![Bild]( C:\working-directory\Azure\screen\Azure-db-always-encrypted.png)
 ```bash
+	[WIN] + [R]
+	ufw
+```
+.
+
+
+```bash
+	sudo apt install ufw
+```
+.
+  
+
+```bash
+	sudo ufw status
+```
+.
+
+
+```bash
+	sudo ufw allow 2xx
+```
+.
+
+
+```bash
+	sudo ufw enable
+```
+.
+
+____________________
+
+### Website vorbereiten
+
+
+```bash
+	sudo apt-get install apache2
+```
+.
+
+
+```bash
+	sudo systemctl start apache2
+```
+.
+  
+
+```bash
+	sudo nano /etc/ufw/before.rules Ping schlucken
+```
+.
+
+
+```bash
+	for Input
+```
+.
+
+
+```bash
+	#eine neue erste Zeile eingfügen
+	-A ufw-before-input -p icmp --icmp-type echo-request -j DROP
+```
+.
+
+  
+```bash
+
 
 ```
 .
 
-![Bild]( C:\working-directory\Azure\screen\Azure-db-always-encrypted-verschlüsseln.png)
+_____________
+### Installation Cloudron
 
-Dokumentation: [https://4sysops.com/archives/sql-server-always-encrypted/](https://4sysops.com/archives/sql-server-always-encrypted/ "https://4sysops.com/archives/sql-server-always-encrypted/")
+
+```bash
+	sudo su -
+```
+.
+
+
+```bash
+	wget [https://cloudron.io/cloudron-setup](https://cloudron.io/cloudron-setup)  
+```
+.
+
+
+```bash
+	chmod +x ./cloudron-setup  
+```
+.
+
+```bash
+	./cloudron-setup  
+```
+.
+
+
+![bild]( .\C:\working-directory\SSH-Server\screen\lenode.png)
+  
 
