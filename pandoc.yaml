@@ -1,0 +1,17 @@
+
+output:
+  docx:
+    standalone: true
+    embed-resources: true
+    from: markdown+wikilinks_title_after_pipe+mark+autolink_bare_uris+lists_without_preceding_blankline
+    to: docx
+    output: output.docx
+    lua-filter:  
+      - image.lua
+      - codeblock.lua
+      - math.lua
+      - link.lua
+    filter: pandoc-crossref
+    citeproc: true
+    top-level-division: chapter
+    toc: true
